@@ -1,0 +1,6 @@
+@production_Manassas_HostAddress = http://localhost:5127
+
+GET {{production_Manassas_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
