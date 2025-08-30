@@ -1,0 +1,6 @@
+# Ignore secrets
+.env
+
+
+# Uncomment to keep local appsettings private
+ appsettings.json
