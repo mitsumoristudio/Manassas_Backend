@@ -1,3 +1,11 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Project_Manassas;
+using Project_Manassas.Database;
+using Project_Manassas.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,7 +13,80 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// JWT settings
+var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+
+builder.Services.AddAuthentication(option =>
+    {
+        option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+    })
+    .AddJwtBearer(option =>
+    {
+        option.RequireHttpsMetadata = false;
+        option.SaveToken = true;
+        option.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidIssuer = jwtSettings?.Issuer,
+        
+            ValidateAudience = true,
+            ValidAudience = jwtSettings?.Audience,
+        
+            ValidateLifetime = true,
+        
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings!.SecretKey))
+            // Tells ASP.NET Core ow to validate incoming JWT tokens
+        
+        };
+    });
+
+builder.Services.AddAuthorization();
+
+// Setting up Neon database
+var connectionString = builder.Configuration.GetConnectionString("NeonConnection");
+
+builder.Services.AddDbContext<ProjectContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("NeonConnection"));
+});
+
+// Add CORS services to container for REACT to call the API on frontend
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DevCorsPolicy",
+        policy => policy.WithOrigins("http://localhost:3000") // URL for React App
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials()
+    );
+});
+
+builder.Services.AddControllers()
+    .AddJsonOptions(opts =>
+    {
+        opts.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+    });
+
+builder.Services.AddApplicationServices();
+
+// Alternative from using extension method to add service scope
+ //builder.Services.AddScoped<IProjectService, ProjectService>();
+
 var app = builder.Build();
+// This order matters for authentication to work
+app.UseRouting();
+
+app.UseCors("DevCorsPolicy");
+
+app.UseAuthentication();
+
+app.UseAuthorization();
+
+app.MapControllers();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -14,9 +95,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
-
+app.MapGet("/", () => "Hello World!");
 
 app.Run();
 
