@@ -1,5 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -66,7 +67,8 @@ public class UserService : IUserService
       };
       
       // Prepare the JWT signing
-      var secretKey = Convert.FromBase64String(_jwtSettings.SecretKey);
+    //  var secretKey = Convert.FromBase64String(_jwtSettings.SecretKey);
+      var secretKey = Encoding.UTF8.GetBytes(_jwtSettings.SecretKey);
       var key = new SymmetricSecurityKey(secretKey);
       var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
         
