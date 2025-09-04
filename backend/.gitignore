@@ -4,7 +4,6 @@
 # Ignore all appsettings files
 appsettings*.json
 
-
 # Uncomment to keep local appsettings private
 appsettings.json
 appsettings.Development.json
