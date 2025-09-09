@@ -6,9 +6,9 @@ namespace Project_Manassas.Service;
 
 public class SendGridEmailService: ISendGridService
 {
-    private readonly string _apiKey;
-    private readonly string _fromEmail = "mitsumori@nashmanassas.org";
-    private readonly string _fromAppName = "Nash Manassas";
+    private readonly string? _apiKey;
+    private readonly string? _fromEmail = "mitsumori@nashmanassas.org";
+    private readonly string? _fromAppName = "Nash Manassas";
 
     public SendGridEmailService(IConfiguration configuration)
     {
