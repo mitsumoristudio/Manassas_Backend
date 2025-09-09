@@ -60,4 +60,17 @@ public class ApiEndPoints
 
       private const string user = "user";
     }
+
+    public static class SendGridEmail
+    {
+        public const string Base = $"{ApiBase}/users";
+
+        public const string REGISTER_URL_SENDGRID = $"registerSendGrid";
+        
+        public const string VERIFY_URL_SENDGRID = $"verifyEmail";
+        
+        public const string FORGOT_URL_PASSWORD = $"forgotPassword";
+        
+        public const string RESET_URL_PASSWORD = $"resetPassword";
+    }
 }
