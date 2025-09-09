@@ -134,7 +134,6 @@
 /Users/satoshimitsumori/RiderProjects/production_Manassas/backend/obj/Debug/net8.0/backend.csproj.CoreCompileInputs.cache
 /Users/satoshimitsumori/RiderProjects/production_Manassas/backend/obj/Debug/net8.0/backend.MvcApplicationPartsAssemblyInfo.cs
 /Users/satoshimitsumori/RiderProjects/production_Manassas/backend/obj/Debug/net8.0/backend.MvcApplicationPartsAssemblyInfo.cache
-/Users/satoshimitsumori/RiderProjects/production_Manassas/backend/obj/Debug/net8.0/backend.sourcelink.json
 /Users/satoshimitsumori/RiderProjects/production_Manassas/backend/obj/Debug/net8.0/staticwebassets.build.json
 /Users/satoshimitsumori/RiderProjects/production_Manassas/backend/obj/Debug/net8.0/staticwebassets.development.json
 /Users/satoshimitsumori/RiderProjects/production_Manassas/backend/obj/Debug/net8.0/staticwebassets/msbuild.backend.Microsoft.AspNetCore.StaticWebAssets.props
@@ -149,3 +148,9 @@
 /Users/satoshimitsumori/RiderProjects/production_Manassas/backend/obj/Debug/net8.0/backend.pdb
 /Users/satoshimitsumori/RiderProjects/production_Manassas/backend/obj/Debug/net8.0/backend.genruntimeconfig.cache
 /Users/satoshimitsumori/RiderProjects/production_Manassas/backend/obj/Debug/net8.0/ref/backend.dll
+/Users/satoshimitsumori/RiderProjects/production_Manassas/backend/bin/Debug/net8.0/DotNetEnv.dll
+/Users/satoshimitsumori/RiderProjects/production_Manassas/backend/bin/Debug/net8.0/Sprache.dll
+/Users/satoshimitsumori/RiderProjects/production_Manassas/backend/bin/Debug/net8.0/Newtonsoft.Json.dll
+/Users/satoshimitsumori/RiderProjects/production_Manassas/backend/bin/Debug/net8.0/SendGrid.dll
+/Users/satoshimitsumori/RiderProjects/production_Manassas/backend/bin/Debug/net8.0/StarkbankEcdsa.dll
+/Users/satoshimitsumori/RiderProjects/production_Manassas/backend/bin/Debug/net8.0/dotenv.net.dll

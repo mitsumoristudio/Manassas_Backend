@@ -5,13 +5,23 @@ using Microsoft.IdentityModel.Tokens;
 using Project_Manassas;
 using Project_Manassas.Database;
 using Project_Manassas.Service;
+using dotenv.net;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Load Env file
+DotEnv.Load();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Sendgrid
+var sendGridKey = Environment.GetEnvironmentVariable("SendGrid__ApiKey");
+//var sendGridKey = builder.Configuration["SendGrid:ApiKey"];
+
+Console.WriteLine($"SendGrid Key: {sendGridKey}");
 
 // JWT settings
 var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();

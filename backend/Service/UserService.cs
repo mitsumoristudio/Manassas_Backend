@@ -38,7 +38,7 @@ public class UserService : IUserService
    {
       var user = await _dbContext.Users.FindAsync(id);
       
-      return (user is null ? null : ContractUserMapping.MaptoUserResponse(user));
+      return (user is null ? null : ContractUserMapping.MaptoUserResponse(user)) ?? throw new InvalidOperationException();
    }
    
    public async Task<bool> DeleteAsyncUser(Guid id)

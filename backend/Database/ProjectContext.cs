@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Project_Manassas.Model;
+using Project_Manassas.Model.SendGridModel;
 
 namespace Project_Manassas.Database;
 
@@ -12,6 +13,10 @@ public class ProjectContext(DbContextOptions<ProjectContext> options) : DbContex
     public DbSet<ImageFileEntity> ImageFiles => Set<ImageFileEntity>();
     
     public DbSet<EquipmentEntity> Equipments => Set<EquipmentEntity>();
+    
+    public DbSet<PasswordResetTokenModel> PasswordResetToken => Set<PasswordResetTokenModel>();
+    
+    public DbSet<VerificationCodeModel>  VerificationCode => Set<VerificationCodeModel>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -40,6 +45,19 @@ public class ProjectContext(DbContextOptions<ProjectContext> options) : DbContex
             entity.ToTable("ImageFile");
             entity.HasKey(e => e.Id);
         });
+
+        modelBuilder.Entity<PasswordResetTokenModel>(entity =>
+        {
+            entity.ToTable("PasswordResetToken");
+            entity.HasKey(e => e.Id);
+        });
+
+        modelBuilder.Entity<VerificationCodeModel>(entity =>
+        {
+            entity.ToTable("VerificationCode");
+            entity.HasKey(e => e.Id);
+        });
+        
         modelBuilder.Entity<ProjectEntity>()
             .HasOne(p => p.ImageFile)
             .WithMany(i  => i.Projects)

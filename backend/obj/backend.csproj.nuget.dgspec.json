@@ -47,6 +47,10 @@
               "target": "Package",
               "version": "[4.0.3, )"
             },
+            "DotNetEnv": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
             "FluentValidation.AspNetCore": {
               "target": "Package",
               "version": "[11.3.1, )"
@@ -81,6 +85,10 @@
               "target": "Package",
               "version": "[9.0.4, )"
             },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.29.3, )"
+            },
             "SixLabors.ImageSharp": {
               "target": "Package",
               "version": "[3.1.11, )"
@@ -92,6 +100,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
+            },
+            "dotenv.net": {
+              "target": "Package",
+              "version": "[4.0.0, )"
             }
           },
           "imports": [
